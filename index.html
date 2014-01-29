@@ -113,8 +113,8 @@
     }
 
     $(function(){
-      $('form').on('submit', function(e){
-        e.preventDefault();
+
+      function printPhrase() {
         var inputVal = $('input').val();
 
         var randomPhrase = kauesPhrases();
@@ -129,6 +129,18 @@
           ga('send', 'event', 'Opinião', 'O que o Kaue acha sobre', inputVal, 1);
           setBackground();
         }
+      }
+
+      var hash;
+      if(window.location.hash) {
+        hash = window.location.hash;
+        $('input').val(hash.replace('#', ''));
+        printPhrase();
+      }
+
+      $('form').on('submit', function(e){
+        e.preventDefault();
+        printPhrase();
       });
 
       $('#fb-share').click(fbShare);
@@ -163,7 +175,7 @@
 
       FB.ui({
         method: 'feed',
-        link: 'http://enriquesaid.github.io/kaue-opina/',
+        link: 'http://enriquesaid.github.io/kaue-opina/#' + about.replace(' ', ''),
         caption: '...',
         picture: "http://enriquesaid.github.io/kaue-opina/" + $('h2 img').attr('src'),
         name: 'O que o Kaue acha sobre '+ about +'?',
