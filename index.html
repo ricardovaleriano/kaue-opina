@@ -41,24 +41,72 @@
 
   <h2 style="display: none">
     <img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash2/t1/531463_4323191479330_98480058_n.jpg" alt="" align="left" width="50">
-    contanto que se use no momento certo, eu nem sou contra <span></span>
+      <span id="kaues-prefix"></span>
+      <span id="kaue-word"></span>
   </h2>
+  <span id="fb-share">divida essa brilhante opinião no feici</span>
 
 
+  <div id="fb-root"></div>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script>
+    function kauesPrefix() {
+      var kauesPrefixes = [
+        "Contanto que se use no momento certo, eu nem sou contra ",
+        "Você está me perguntando o que eu acho sobre ",
+        "Não sei se eu tenho uma opinião formada sobre ",
+        "Cara, depende! Se estiver MUITO BARATO eu não sou contra ",
+      ]
+      var random = Math.floor(Math.random() * 4);
+      return kauesPrefixes[random];
+    }
     $(function(){
       $('form').on('submit', function(e){
         e.preventDefault();
         var inputVal = $('input').val();
 
+        $('#kaues-prefix').text(kauesPrefix());
+
         if(inputVal.length) {
-          $('h2').fadeIn('slow').find('span').text(inputVal);
+          $('h2').fadeIn('slow').find('#kaue-word').text(inputVal);
         }
       });
 
-
+      $('#fb-share').click(fbShare);
     });
+  </script>
+
+  <!-- FB sdk -->
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '517171001731278',
+        status     : true,
+        xfbml      : true
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "http://connect.facebook.net/en_US/all.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <script>
+    function fbShare() {
+      prefix = $("#kaues-prefix").text();
+      about = $("#kaue-word").text();
+      FB.ui({
+        method: 'feed',
+        link: 'https://developers.facebook.com/docs/dialogs/',
+        caption: '...',
+        name: 'O que o Kaue acha sobre '+ about +'?',
+        description: prefix + about +'.',
+      }, function(response){});
+    }
   </script>
 </body>
 </html>
