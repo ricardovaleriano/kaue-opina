@@ -72,7 +72,7 @@
       <span id="kaues-prefix"></span>
       <span id="kaue-word"></span>
   </h2>
-  <span id="fb-share">divida essa brilhante opinião no feici</span>
+  <span id="fb-share" style="display: none;">divida essa brilhante opinião no feici</span>
 
 
   <div id="fb-root"></div>
@@ -94,6 +94,8 @@
         var inputVal = $('input').val();
 
         $('#kaues-prefix').text(kauesPrefix());
+
+        $('#fb-share').fadeIn('slow');
 
         if(inputVal.length) {
           $('h2').fadeIn('slow').find('#kaue-word').text(inputVal);
