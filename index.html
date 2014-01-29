@@ -16,7 +16,7 @@
       background-position: 0 -200px;
     }
 
-    div {
+    #main {
       display: table;
       padding: 20px;
       box-sizing: border-box;
@@ -37,7 +37,7 @@
       margin-right: 20px;
     }
 
-    h2 span {
+    h2 #kaue-word {
       color: blue;
     }
 
@@ -46,11 +46,20 @@
       height: 30px;
       font-size: 1em;
     }
+
+    #fb-share {
+      background: blue;
+      padding: 10px;
+      border: 2px solid #FFF;
+      border-radius: 100px;
+      color: #FFF;
+      cursor: pointer;
+    }
   </style>
 
 </head>
 <body>
-  <div>
+  <div id="main">
     <h1>Monte você mesmo um texto com a opinião do Kaue</h1>
     <form action="">
       <input type="text" placeholder="Digite o que você quer que ele opine" />
