@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Fala ai kaue</title>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+    }
+
+    h2 {
+      height: 50px;
+      line-height: 50px;
+      background: #FAFAFA;
+      padding: 20px;
+      border: 1px solid #EEE;
+    }
+
+    h2 img {
+      margin-right: 20px;
+    }
+
+    h2 span {
+      color: blue;
+    }
+  </style>
+
+</head>
+<body>
+  <h1>Monte você mesmo um texto com a opinião do Kaue</h1>
+  <form action="">
+    <input type="text" placeholder="Digite o que você quer que ele opine" />
+  </form>
+
+  <h2 style="display: none">
+    <img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash2/t1/531463_4323191479330_98480058_n.jpg" alt="" align="left" width="50">
+    contanto que se use no momento certo, eu nem sou contra <span></span>
+  </h2>
+
+
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script>
+    $(function(){
+      $('form').on('submit', function(e){
+        e.preventDefault();
+        var inputVal = $('input').val();
+
+        if(inputVal.length) {
+          $('h2').fadeIn('slow').find('span').text(inputVal);
+        }
+      });
+
+
+    });
+  </script>
+</body>
+</html>
