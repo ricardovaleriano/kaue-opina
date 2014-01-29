@@ -22,7 +22,7 @@
     body {
       margin: 0;
       font-family: Georgia, serif;
-      background: url('bg.jpg') no-repeat  0 0;
+      background: url('bg.jpg') no-repeat 0 0;
       background-size: 100% 100%;
     }
 
@@ -98,6 +98,12 @@
       var random = Math.floor(Math.random() * 4);
       return kauesPrefixes[random];
     }
+
+    function setBackground() {
+      var random = Math.floor(Math.random() * 4);
+      document.body.style.backgroundImage = "url('bg" + random + ".jpg')"
+    }
+
     $(function(){
       $('form').on('submit', function(e){
         e.preventDefault();
@@ -114,6 +120,7 @@
       });
 
       $('#fb-share').click(fbShare);
+      setBackground();
     });
   </script>
 
