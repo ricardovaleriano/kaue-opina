@@ -116,6 +116,7 @@
         if(inputVal.length) {
           $('h2').fadeIn('slow').find('#kaue-word').text(inputVal);
           ga('send', 'event', 'Opinião', 'O que o Kaue acha sobre', inputVal, 1);
+          setBackground();
         }
       });
 
