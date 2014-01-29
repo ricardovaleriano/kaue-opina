@@ -47,10 +47,6 @@
       margin-right: 20px;
     }
 
-    h2 #kaue-word {
-      color: blue;
-    }
-
     form input {
       width: 300px;
       height: 30px;
@@ -79,8 +75,7 @@
 
   <h2 style="display: none">
     <img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash2/t1/531463_4323191479330_98480058_n.jpg" alt="" align="left" width="150">
-      <span id="kaues-prefix"></span>
-      <span id="kaue-word"></span>
+      <span id="kaues-phrase"></span>
   </h2>
   <span id="fb-share" style="display: none;">divida essa brilhante opinião no feici</span>
 
@@ -88,15 +83,28 @@
   <div id="fb-root"></div>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script>
-    function kauesPrefix() {
-      var kauesPrefixes = [
-        "Contanto que se use no momento certo, eu nem sou contra ",
-        "Você está me perguntando o que eu acho sobre ",
-        "Não sei se eu tenho uma opinião formada sobre ",
-        "Cara, depende! Se estiver MUITO BARATO eu não sou contra ",
-      ]
+    function kauesPhrases() {
+      var kauesPhrases = [
+        {
+          preffix: "Contanto que se use no momento certo, eu nem sou contra ",
+          suffix: "!"
+        },
+        {
+          preffix: "Você está me perguntando o que eu acho sobre ",
+          suffix: "?"
+        },
+        {
+          preffix: "Não sei se eu tenho uma opinião formada sobre ",
+          suffix: "."
+        },
+        {
+          preffix: "Cara, depende! Se estiver MUITO BARATO eu não sou contra ",
+          suffix: "!"
+        }
+      ];
+
       var random = Math.floor(Math.random() * 4);
-      return kauesPrefixes[random];
+      return kauesPhrases[random];
     }
 
     function setBackground() {
@@ -109,12 +117,15 @@
         e.preventDefault();
         var inputVal = $('input').val();
 
-        $('#kaues-prefix').text(kauesPrefix());
+        var randomPhrase = kauesPhrases();
+        var finalPhrase = randomPhrase.preffix + inputVal + randomPhrase.suffix;
+
+        $('#kaues-phrase').text(finalPhrase);
 
         $('#fb-share').fadeIn('slow');
 
         if(inputVal.length) {
-          $('h2').fadeIn('slow').find('#kaue-word').text(inputVal);
+          $('h2').fadeIn('slow');
           ga('send', 'event', 'Opinião', 'O que o Kaue acha sobre', inputVal, 1);
           setBackground();
         }
@@ -147,15 +158,17 @@
 
   <script>
     function fbShare() {
-      prefix = $("#kaues-prefix").text();
-      about = $("#kaue-word").text();
+      var phrase = $("#kaues-phrase").text();
+      var about = $('input').val();
+
       FB.ui({
         method: 'feed',
         link: 'http://enriquesaid.github.io/kaue-opina/',
         caption: '...',
         name: 'O que o Kaue acha sobre '+ about +'?',
-        description: prefix + about +'.',
+        description: phrase
       }, function(response){});
+
     }
   </script>
 </body>
