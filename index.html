@@ -5,14 +5,30 @@
   <title>Fala ai kaue</title>
 
   <style>
+    html, body {
+      height: 100%;
+    }
     body {
+      margin: 0;
       font-family: Georgia, serif;
+      background: url('bg.jpg') no-repeat;
+      background-size: 100%;
+      background-position: 0 -200px;
+    }
+
+    div {
+      display: table;
+      padding: 20px;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .1);
     }
 
     h2 {
       min-height: 50px;
       line-height: 50px;
-      background: #FAFAFA;
+      background: rgba(250,250,250,.7);
       padding: 20px;
       border: 1px solid #EEE;
     }
@@ -34,10 +50,11 @@
 
 </head>
 <body>
-  <h1>Monte você mesmo um texto com a opinião do Kaue</h1>
-  <form action="">
-    <input type="text" placeholder="Digite o que você quer que ele opine" />
-  </form>
+  <div>
+    <h1>Monte você mesmo um texto com a opinião do Kaue</h1>
+    <form action="">
+      <input type="text" placeholder="Digite o que você quer que ele opine" />
+    </form>
 
   <h2 style="display: none">
     <img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash2/t1/531463_4323191479330_98480058_n.jpg" alt="" align="left" width="50">
@@ -69,11 +86,32 @@
 
         if(inputVal.length) {
           $('h2').fadeIn('slow').find('#kaue-word').text(inputVal);
+          _gaq.push(['_trackEvent', 'Opinião', 'O que o Kaue acha sobre', inputVal]);
         }
       });
 
       $('#fb-share').click(fbShare);
     });
+
+
+    // GA
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-47548866-1', 'enriquesaid.github.io');
+    ga('send', 'pageview');
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-47548866-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
   </script>
 
   <!-- FB sdk -->
