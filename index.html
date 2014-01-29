@@ -22,7 +22,7 @@
     body {
       margin: 0;
       font-family: Georgia, serif;
-      background: url('bg.jpg') no-repeat 0 0;
+      background: url('bg0.jpg') no-repeat 0 0;
       background-size: 100% 100%;
     }
 
@@ -36,8 +36,8 @@
     }
 
     h2 {
-      min-height: 50px;
-      line-height: 50px;
+      min-height: 112px;
+      line-height: 30px;
       background: rgba(250,250,250,.7);
       padding: 20px;
       border: 1px solid #EEE;
@@ -78,7 +78,7 @@
     </form>
 
   <h2 style="display: none">
-    <img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash2/t1/531463_4323191479330_98480058_n.jpg" alt="" align="left" width="50">
+    <img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash2/t1/531463_4323191479330_98480058_n.jpg" alt="" align="left" width="150">
       <span id="kaues-prefix"></span>
       <span id="kaue-word"></span>
   </h2>
@@ -101,7 +101,7 @@
 
     function setBackground() {
       var random = Math.floor(Math.random() * 4);
-      document.body.style.backgroundImage = "url('bg" + random + ".jpg')"
+      $('h2 img').attr('src', 'bg' + random + '.jpg');
     }
 
     $(function(){
